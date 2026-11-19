@@ -1,23 +1,30 @@
 # Technical capabilities and scope
 
-## 1. Read-only market observer — operating research service
+Updated November 2026.
 
-- Observes permitted transaction data and tracks selected pool/vault state without a trading wallet.
-- Links observed transaction signatures to publicly finalized transactions, identifies relevant writable pool interactions, and measures local processing/timing characteristics.
-- Has verified genuine transaction observations. **This does not establish that they arrived before execution**, nor that a profitable backrun was available.
-- No order signing, transaction submission, bundles or funded strategies are activated.
+## 1. Read-only market observation
 
-## 2. Offline arbitrage lab — research and testing
+- Observes permitted transaction data and selected pool/vault state without a trading wallet.
+- Correlates account updates with public finalized transaction receipts and reconciles token transfers and transaction ordering.
+- Uses a persistent WebSocket/HTTPS research pipeline, immediate event dispatch and reusable unsigned transaction templates.
+- In a short controlled observation, 501 exact quote-relevant processed/confirmed account-update matches had a median processed delivery lead of approximately 325 ms. This measures notification delivery, not pre-execution visibility.
+- In an offline benchmark using identical retained events and mocked response delays, persistent transport reduced median notification-to-simulation-launch latency by approximately 61 ms. This is not a live execution or inclusion benchmark.
 
-- Constructs and validates candidate multi-venue token routes and rejects incompatible pools or token flows.
-- Evaluates supported finite-size swaps with exact integer arithmetic and venue-specific fee handling, where independently validated account/state inputs exist.
-- Screens paper candidates against explicit capital, execution-fee, slippage and failure-risk assumptions; missing state and unsupported liquidity fail closed.
-- Uses historical public Solana transactions and captured market-state fixtures for deterministic regression tests.
-- Working areas include restricted Meteora DLMM and PumpSwap / Raydium pricing; Orca finite-size Whirlpool execution, complete historical-bank simulation and on-chain optimiser/CPI execution remain **unverified or incomplete**.
-- Captured examples to date have **not** established repeatable executable after-cost profit for this project.
+## 2. Offline arbitrage lab and simulation research
 
-## 3. Intended pilot and compliance
+- Validates token eligibility, ordered account layouts, pool identities, dynamic tick/bin-array coverage and complete account-state evidence. Missing or inconsistent state and unsupported liquidity fail closed.
+- Evaluates finite-size swaps using integer arithmetic and venue-specific fees where independently validated state and supported pricing implementations exist.
+- Research covers restricted Meteora DLMM, PumpSwap and Raydium pricing and Orca route assembly/simulation. Full execution parity across venues and historical-bank reproduction remain incomplete or unverified.
+- Reuses unsigned transaction templates for simulation of an existing public on-chain arbitrage program. Checks actual venue invocations and reconciled settlement rather than interpreting a successful RPC response as a profitable trade.
+- Uses captured fixtures and public-chain data for deterministic regression tests, with bounded network and resource usage.
+- Historical competitor fills have been independently reconciled. Our captured eligible states have not yet demonstrated a profitable executable spread; our unsigned simulations have not established successful swaps or after-cost profit.
 
-Seek a limited, authorized sandbox assessment of early eligible signals, the available account/state dependencies, verified receipt-to-execution timing and the rules for an auction-based compliant backrun. We will not treat a read-only receipt or simulated profit as evidence of live execution capability.
+## 3. Intended sandbox pilot
 
-This is a disclosure-limited overview. We intentionally do not publish credentials, operational endpoints, private research history, competitor-specific strategy, financial goals or implementation internals. The accompanying self-contained code is a **small illustrative subset of the kind of after-cost validation used in paper research**, not the original production implementation or proof of searcher profitability.
+Seek a limited authorized evaluation of earlier eligible signals, complete market-state availability, signature-matched event attribution, execution/auction timing and conservative after-cost paper opportunities for compliant backrunning. Maintain strict rejection of unsupported or inconsistent state. Progress to any funded execution only after independent validation and applicable provider approval.
+
+No active order signing, transaction submission, funded trading executor or demonstrated live profitability. No frontrunning or sandwich strategies.
+
+## Disclosure
+
+This is a disclosure-limited technical overview. Credentials, operational endpoints, private research history, competitor-specific strategy, financial goals and implementation internals are not published. The accompanying standalone risk-check example is illustrative, not production code or evidence of searcher profitability.
